@@ -1,11 +1,9 @@
 \name{createCluster}
 \alias{createCluster}
 \title{Creates the configuration object, uploads needed files, and starts...}
-\usage{createCluster(numInstances=2, cranPackages, filesOnNodes,
-    rObjectsOnNodes, enableDebugging=FALSE, instancesPerNode,
-    masterInstanceType="m1.small", slaveInstanceType="m1.small",
-    location="us-east-1a", ec2KeyName, copy.image=FALSE,
-    otherBootstrapActions)}
+\usage{createCluster(numInstances=2, cranPackages, filesOnNodes, rObjectsOnNodes, enableDebugging=FALSE, instancesPerNode,
+    masterInstanceType="m1.small", slaveInstanceType="m1.small", location="us-east-1a", ec2KeyName, copy.image=FALSE,
+    otherBootstrapActions, sourcePackagesToInstall)}
 \description{Creates the configuration object, uploads needed files, and starts
 a Segue Hadoop cluster on Elastic Map Reduce.}
 \details{The the needed files are uploaded to S3 and the EMR nodes are started.}
@@ -27,10 +25,11 @@ this will fail.}
 \item{slaveInstanceType}{EC2 instance type for the slave nodes}
 \item{location}{EC2 location name for the cluster}
 \item{ec2KeyName}{EC2 Key used for logging into the main node. Use the user name 'hadoop'}
-\item{copy.image}{T/F whether to copy the entire local environment to the nodes. If this feels}
-\item{otherBootstrapActions}{a list-of-lists of other bootstrap actions to run; chlid list members
-fast and loose... you're right! It's nuts. Use it with caution. Very handy when you really need it.}}
+\item{copy.image}{T/F whether to copy the entire local environment to the nodes. If this feels
+fast and loose... you're right! It's nuts. Use it with caution. Very handy when you really need it.}
+\item{otherBootstrapActions}{a list-of-lists of other bootstrap actions to run; chlid list members}
+\item{sourcePackagesToInstall}{vector of full paths to source packages to be installed on each node}}
 \examples{\dontrun{
 myCluster   <- createCluster(numInstances=2,
-bootStrapLatestR=TRUE, cranPackages=c("Hmisc", "plyr"))
+cranPackages=c("Hmisc", "plyr"))
 }}
